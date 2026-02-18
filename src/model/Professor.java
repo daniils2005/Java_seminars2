@@ -1,4 +1,4 @@
-package seminars_2;
+package model;
 
 public class Professor {
 	private long p_ID;
