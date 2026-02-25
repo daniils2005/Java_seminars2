@@ -63,5 +63,4 @@ public class Grade {
 	public String toString() {
 		return "Grade [g_ID=" + g_ID + ", value=" + value + ", student=" + student + ", course=" + course + "]";
 	}
-	
 }
