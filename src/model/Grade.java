@@ -5,16 +5,19 @@ public class Grade {
 	private int value;
 	private Student student;
 	private Course course;
+	private static long idCounter = 200000;
 	
 	public Grade() {
-		g_ID = 0;
+		idCounter++;
+		g_ID = idCounter;
 		value = 0;
 		student = new Student();
 		course = new Course();
 	}
 	
-	public Grade(long g_ID, int value, Student student, Course course) {
-		this.g_ID = g_ID;
+	public Grade(int value, Student student, Course course) {
+		idCounter++;
+		this.g_ID = idCounter;
 		this.value = value;
 		this.student = student;
 		this.course = course;
@@ -25,7 +28,9 @@ public class Grade {
 	}
 
 	public void setG_ID(long g_ID) {
-		this.g_ID = g_ID;
+		if(Utility_class.verifyID(g_ID)) {
+			this.g_ID = g_ID;
+		}
 	}
 
 	public int getValue() {
@@ -33,7 +38,9 @@ public class Grade {
 	}
 
 	public void setValue(int value) {
-		this.value = value;
+		if(Utility_class.verifyGrade(value)) {
+			this.value = value;
+		}
 	}
 
 	public Student getStudent() {
@@ -50,6 +57,11 @@ public class Grade {
 
 	public void setCourse(Course course) {
 		this.course = course;
+	}
+
+	@Override
+	public String toString() {
+		return "Grade [g_ID=" + g_ID + ", value=" + value + ", student=" + student + ", course=" + course + "]";
 	}
 	
 }

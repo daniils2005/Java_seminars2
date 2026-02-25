@@ -5,21 +5,24 @@ public class Professor {
 	private String name;
 	private String surname;
 	private String degree;
+	private static long idCounter = 0;
 
 	// default constructor
 	public Professor() {
-		p_ID = 0;
+		idCounter++;
+		p_ID = idCounter;
 		name = "-name required-";
 		surname = "-surname required-";
 		String degree = "-degree required-";
 	}
 
 	// parameterized constructor
-	public Professor(long p_ID, String name, String surname, String degree) {
-		this.p_ID = p_ID;
+	public Professor(String name, String surname, String degree) {
+		idCounter++;
+		this.p_ID = idCounter;
 		this.name = name;
-		this.name = surname;
-		this.name = degree;
+		this.surname = surname;
+		this.degree = degree;
 	}
 
 	public long getP_ID() {
@@ -27,7 +30,9 @@ public class Professor {
 	}
 
 	public void setP_ID(long p_ID) {
-		this.p_ID = p_ID;
+		if(Utility_class.verifyID(p_ID)) {
+			this.p_ID = p_ID;
+		}
 	}
 
 	public String getName() {
@@ -35,7 +40,9 @@ public class Professor {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(Utility_class.isOnlyLetters(name)) {
+			this.name = name;
+		}
 	}
 
 	public String getSurname() {
@@ -43,7 +50,9 @@ public class Professor {
 	}
 
 	public void setSurname(String surname) {
-		this.surname = surname;
+		if(Utility_class.isOnlyLetters(surname)) {
+			this.surname = surname;
+		}
 	}
 
 	public String getDegree() {
@@ -51,6 +60,14 @@ public class Professor {
 	}
 
 	public void setDegree(String degree) {
-		this.degree = degree;
+		if(Utility_class.isOnlyLetters(degree)) {
+			this.degree = degree;
+		}
 	}
+
+	@Override
+	public String toString() {
+		return "Professor [p_ID=" + p_ID + ", name=" + name + ", surname=" + surname + ", degree=" + degree + "]";
+	}
+	
 }

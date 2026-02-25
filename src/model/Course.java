@@ -5,16 +5,19 @@ public class Course {
 	private String title;
 	private int creditPoints;
 	private Professor professor;
+	private static long idCounter = 100000;
 	
 	public Course() {
-		c_ID = 0;
+		idCounter++;
+		c_ID = idCounter;
 		title = "-title required-";
 		creditPoints = 0;
 		professor = new Professor();
 	}
 	
-	public Course(long c_ID, String title, int creditPoints, Professor professor) {
-		this.c_ID = c_ID;
+	public Course(String title, int creditPoints, Professor professor) {
+		idCounter++;
+		this.c_ID = idCounter;
 		this.title = title;
 		this.creditPoints = creditPoints;
 		this.professor = professor;
@@ -25,7 +28,9 @@ public class Course {
 	}
 
 	public void setC_ID(long c_ID) {
-		this.c_ID = c_ID;
+		if(Utility_class.verifyID(c_ID)) {
+			this.c_ID = c_ID;
+		}
 	}
 
 	public String getTitle() {
@@ -33,7 +38,9 @@ public class Course {
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		if(Utility_class.isOnlyLetters(title)) {
+			this.title = title;
+		}
 	}
 
 	public int getCreditPoints() {
@@ -50,6 +57,11 @@ public class Course {
 
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
+	}
+
+	@Override
+	public String toString() {
+		return "Course [c_ID=" + c_ID + ", title=" + title + ", creditPoints=" + creditPoints + ", professor=" + professor + "]";
 	}
 	
 }

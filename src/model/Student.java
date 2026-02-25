@@ -4,15 +4,19 @@ public class Student {
 	private long st_ID;
 	private String name;
 	private String surname;
+	private static long idCounter = 10000; 
 	
 	public Student() {
-		st_ID = 0;
+		idCounter++;
+		st_ID = idCounter;
 		name = "-name required-";
 		surname = "-surname required-";
+		
 	}
 	
-	public Student(long st_ID, String name, String surname) {
-		this.st_ID = st_ID;
+	public Student(String name, String surname) {
+		idCounter++;
+		this.st_ID = idCounter;
 		this.name = name;
 		this.surname = surname;
 	}
@@ -22,7 +26,9 @@ public class Student {
 	}
 
 	public void setSt_ID(long st_ID) {
-		this.st_ID = st_ID;
+		if(Utility_class.verifyID(st_ID)) {
+			this.st_ID = st_ID;
+		}
 	}
 
 	public String getName() {
@@ -30,7 +36,9 @@ public class Student {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(Utility_class.isOnlyLetters(name)) {
+			this.name = name;
+		}
 	}
 
 	public String getSurname() {
@@ -38,7 +46,14 @@ public class Student {
 	}
 
 	public void setSurname(String surname) {
-		this.surname = surname;
+		if(Utility_class.isOnlyLetters(surname)) {
+			this.surname = surname;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Student [st_ID=" + st_ID + ", name=" + name + ", surname=" + surname + "]";
 	}
 	
 }
