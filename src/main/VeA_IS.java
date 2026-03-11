@@ -9,6 +9,7 @@ import model.*;
 //import model.Student;
 import model.enums.ProfDegree;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class VeA_IS {
 	
@@ -18,37 +19,39 @@ public class VeA_IS {
 	private static ArrayList<Grade> gradeLists = new ArrayList<>();
 	
 	public static void main(String[] args) {
-		System.out.println("---Students---");
 		Student stud1 = new Student();
-		System.out.println(stud1);
 		Student stud2 = new Student("Rendijs", "Serna");
-		System.out.println(stud2);
 		Student stud3 = new Student("671547", "Ser2d");
-		System.out.println(stud3);
+		studentLists.add(stud1);
+		studentLists.add(stud2);
+		studentLists.add(stud3);
 		
-		System.out.println("---Professors---");
+		System.out.println(studentLists);
+		
 		Professor prof1 = new Professor();
-		System.out.println(prof1);
 		Professor prof2 = new Professor("Vairis", "Caune", ProfDegree.phd);
-		System.out.println(prof2);
 		Professor prof3 = new Professor("Galina", "Hilkevica", ProfDegree.phd);
-		System.out.println(prof3);
+		professorLists.add(prof1);
+		professorLists.add(prof2);
+		professorLists.add(prof3);
 		
-		System.out.println("---Courses---");
+		System.out.println(professorLists);
+		
 		Course course1 = new Course();
-		System.out.println(course1);
 		Course course2 = new Course("Algoritmu teorija", 3, prof2);
-		System.out.println(course2);
 		Course course3 = new Course("Matematiska analize", 3, prof3);
-		System.out.println(course3);
+		courseLists.addAll(Arrays.asList(course1, course2, course3)); //viena rinda
 		
-		System.out.println("---Grades---");
+		System.out.println(courseLists);
+		
 		Grade gr1 = new Grade();
-		System.out.println(gr1);
 		Grade gr2 = new Grade(10, stud2, course1);
-		System.out.println(gr2);
 		Grade gr3 = new Grade(7, stud2, course2);
-		System.out.println(gr3);
+		gradeLists.add(gr1);
+		gradeLists.add(gr2);
+		gradeLists.add(gr3);
+		
+		System.out.println(gradeLists);
 	}
 
 	public static double avgGrade(Student student) {
