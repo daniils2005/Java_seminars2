@@ -30,7 +30,19 @@ public class Person {
 		}
 	}
 	//4 no args constr
+	public Person() {
+		setName("-name required-");
+		setSurname("-surname required-");
+	}
 	//5 args construct
+	public Person(String name, String surname) {
+		setName(name);
+		setSurname(surname);
+	}
 	//6. toString
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", surname=" + surname + "]";
+	}
 	
 }
