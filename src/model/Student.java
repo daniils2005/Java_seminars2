@@ -8,17 +8,16 @@ public class Student {
 	
 	public Student() {
 		idCounter++;
-		st_ID = idCounter;
-		name = "-name required-";
-		surname = "-surname required-";
-		
+		setSt_ID(idCounter);
+		setName("-name required-");
+		setSurname("-surname required-");
 	}
 	
 	public Student(String name, String surname) {
 		idCounter++;
-		this.st_ID = idCounter;
-		this.name = name;
-		this.surname = surname;
+		setSt_ID(idCounter);
+		setName(name);
+		setSurname(surname);
 	}
 
 	public long getSt_ID() {
@@ -28,6 +27,8 @@ public class Student {
 	public void setSt_ID(long st_ID) {
 		if(Utility_class.verifyID(st_ID)) {
 			this.st_ID = st_ID;
+		} else {
+			this.st_ID = -1;
 		}
 	}
 
@@ -38,6 +39,8 @@ public class Student {
 	public void setName(String name) {
 		if(Utility_class.isOnlyLetters(name)) {
 			this.name = name;
+		} else {
+			this.name = "-name required-";
 		}
 	}
 
@@ -48,6 +51,8 @@ public class Student {
 	public void setSurname(String surname) {
 		if(Utility_class.isOnlyLetters(surname)) {
 			this.surname = surname;
+		} else {
+			this.surname = "-surname required-";
 		}
 	}
 

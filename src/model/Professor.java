@@ -1,28 +1,30 @@
 package model;
 
+import model.enums.ProfDegree;
+
 public class Professor {
 	private long p_ID;
 	private String name;
 	private String surname;
-	private String degree;
+	private ProfDegree degree;
 	private static long idCounter = 0;
 
 	// default constructor
 	public Professor() {
 		idCounter++;
-		p_ID = idCounter;
-		name = "-name required-";
-		surname = "-surname required-";
-		String degree = "-degree required-";
+		setP_ID(idCounter);
+		setName("-name required-");
+		setSurname("-surname required-");
+		setDegree(ProfDegree.other);
 	}
 
 	// parameterized constructor
-	public Professor(String name, String surname, String degree) {
+	public Professor(String name, String surname, ProfDegree degree) {
 		idCounter++;
-		this.p_ID = idCounter;
-		this.name = name;
-		this.surname = surname;
-		this.degree = degree;
+		setP_ID(idCounter);
+		setName(name);
+		setSurname(surname);
+		setDegree(degree);
 	}
 
 	public long getP_ID() {
@@ -32,6 +34,8 @@ public class Professor {
 	public void setP_ID(long p_ID) {
 		if(Utility_class.verifyID(p_ID)) {
 			this.p_ID = p_ID;
+		} else {
+			p_ID = -1;
 		}
 	}
 
@@ -42,6 +46,8 @@ public class Professor {
 	public void setName(String name) {
 		if(Utility_class.isOnlyLetters(name)) {
 			this.name = name;
+		} else {
+			this.name = "-name required-";
 		}
 	}
 
@@ -52,17 +58,17 @@ public class Professor {
 	public void setSurname(String surname) {
 		if(Utility_class.isOnlyLetters(surname)) {
 			this.surname = surname;
+		} else {
+			this.surname = "-surname required-";
 		}
 	}
 
-	public String getDegree() {
+	public ProfDegree getDegree() {
 		return degree;
 	}
 
-	public void setDegree(String degree) {
-		if(Utility_class.isOnlyLetters(degree)) {
-			this.degree = degree;
-		}
+	public void setDegree(ProfDegree degree) {
+		this.degree = degree;
 	}
 
 	@Override

@@ -11,12 +11,9 @@ public class Utility_class {
 	}
 	
 	public static boolean isOnlyLetters(String name){
-		for(int i = 0; i < name.length(); i++) {
-			char c = name.charAt(i);
-			if(!((c >= 65 && c <= 90) || (c >= 97 && c <= 122))) {
-				return false;
-			}
+		if(name.matches("[A-Z]{1}[a-z]{2,20}([ ]{1}[A-Z]{1}[a-z]{2,20})?")) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 }

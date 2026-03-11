@@ -9,18 +9,18 @@ public class Course {
 	
 	public Course() {
 		idCounter++;
-		c_ID = idCounter;
-		title = "-title required-";
-		creditPoints = 0;
-		professor = new Professor();
+		setC_ID(idCounter);
+		setTitle("-title required-");
+		setCreditPoints(0);
+		setProfessor(new Professor());
 	}
 	
 	public Course(String title, int creditPoints, Professor professor) {
 		idCounter++;
-		this.c_ID = idCounter;
-		this.title = title;
-		this.creditPoints = creditPoints;
-		this.professor = professor;
+		setC_ID(idCounter);
+		setTitle(title);
+		setCreditPoints(creditPoints);
+		setProfessor(professor);
 	}
 
 	public long getC_ID() {
@@ -30,6 +30,8 @@ public class Course {
 	public void setC_ID(long c_ID) {
 		if(Utility_class.verifyID(c_ID)) {
 			this.c_ID = c_ID;
+		} else {
+			this.c_ID = -1;
 		}
 	}
 
@@ -38,8 +40,10 @@ public class Course {
 	}
 
 	public void setTitle(String title) {
-		if(Utility_class.isOnlyLetters(title)) {
+		if((title != null) && (title.matches("[A-Z]{1}[A-Za-z0-9 ]{1,40}"))) {
 			this.title = title;
+		} else {
+			this.title = "-title required-";
 		}
 	}
 
@@ -48,7 +52,11 @@ public class Course {
 	}
 
 	public void setCreditPoints(int creditPoints) {
-		this.creditPoints = creditPoints;
+		if(creditPoints >= 1 && creditPoints <= 30) {
+			this.creditPoints = creditPoints;
+		} else {
+			this.creditPoints = 1;
+		}
 	}
 
 	public Professor getProfessor() {
@@ -56,12 +64,16 @@ public class Course {
 	}
 
 	public void setProfessor(Professor professor) {
-		this.professor = professor;
+		if(professor != null) {
+			this.professor = professor;
+		} else {
+			this.professor = new Professor();
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "Course [c_ID=" + c_ID + ", title=" + title + ", creditPoints=" + creditPoints + ", professor=" + professor + "]";
+		return "Course [c_ID=" + c_ID + ", title=" + title + ", creditPoints=" + creditPoints + "CP, professor=" + professor + "]";
 	}
 	
 }

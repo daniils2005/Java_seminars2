@@ -9,18 +9,18 @@ public class Grade {
 	
 	public Grade() {
 		idCounter++;
-		g_ID = idCounter;
-		value = 0;
-		student = new Student();
-		course = new Course();
+		setG_ID(idCounter);
+		setValue(1);
+		setStudent(new Student());
+		setCourse(new Course());
 	}
 	
 	public Grade(int value, Student student, Course course) {
 		idCounter++;
-		this.g_ID = idCounter;
-		this.value = value;
-		this.student = student;
-		this.course = course;
+		setG_ID(idCounter);
+		setValue(value);
+		setStudent(student);
+		setCourse(course);
 	}
 
 	public long getG_ID() {
@@ -30,6 +30,8 @@ public class Grade {
 	public void setG_ID(long g_ID) {
 		if(Utility_class.verifyID(g_ID)) {
 			this.g_ID = g_ID;
+		} else {
+			this.g_ID = -1;
 		}
 	}
 
@@ -40,6 +42,8 @@ public class Grade {
 	public void setValue(int value) {
 		if(Utility_class.verifyGrade(value)) {
 			this.value = value;
+		} else {
+			this.value = 1;
 		}
 	}
 
@@ -48,7 +52,11 @@ public class Grade {
 	}
 
 	public void setStudent(Student student) {
-		this.student = student;
+		if(student != null) {
+			this.student = student;
+		} else {
+			this.student = new Student();
+		}
 	}
 
 	public Course getCourse() {
@@ -56,7 +64,11 @@ public class Grade {
 	}
 
 	public void setCourse(Course course) {
-		this.course = course;
+		if(course != null) {
+			this.course = course;
+		} else {
+			this.course = new Course();
+		}
 	}
 
 	@Override

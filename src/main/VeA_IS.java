@@ -7,7 +7,7 @@ import model.*;
 //import model.Grade;
 //import model.Professor;
 //import model.Student;
-
+import model.enums.ProfDegree;
 import java.util.ArrayList;
 
 public class VeA_IS {
@@ -18,21 +18,29 @@ public class VeA_IS {
 	private static ArrayList<Grade> gradeLists = new ArrayList<>();
 	
 	public static void main(String[] args) {
-		Professor professor1 = new Professor("Pname", "Psurname", "Pdegree");
-		Student student1 = new Student("Sname", "Ssurname");
-		Course course1 = new Course("Programming", 3, professor1);
-		Grade grade1 = new Grade(8, student1, course1);
-
-		System.out.println(professor1);
-		System.out.println(student1);
+		System.out.println("---Students---");
+		Student stud1 = new Student();
+		System.out.println(stud1);
+		Student stud2 = new Student("Rendijs", "Serna");
+		System.out.println(stud2);
+		Student stud3 = new Student("671547", "Ser2d");
+		System.out.println(stud3);
+		
+		System.out.println("---Professors---");
+		Professor prof1 = new Professor();
+		System.out.println(prof1);
+		Professor prof2 = new Professor("Vairis", "Caune", ProfDegree.phd);
+		System.out.println(prof2);
+		Professor prof3 = new Professor("Galina", "Hilkevica", ProfDegree.phd);
+		System.out.println(prof3);
+		
+		System.out.println("---Courses---");
+		Course course1 = new Course();
 		System.out.println(course1);
-		System.out.println(grade1);
-		
-		professorLists.add(professor1);
-		studentLists.add(student1);
-		courseLists.add(course1);
-		gradeLists.add(grade1);
-		
+		Course course2 = new Course("Algoritmu teorija", 3, prof2);
+		System.out.println(course2);
+		Course course3 = new Course("Matematiska analize", 3, prof3);
+		System.out.println(course3);
 	}
 
 	public static double avgGrade(Student student) {
