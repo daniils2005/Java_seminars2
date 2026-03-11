@@ -41,6 +41,14 @@ public class VeA_IS {
 		System.out.println(course2);
 		Course course3 = new Course("Matematiska analize", 3, prof3);
 		System.out.println(course3);
+		
+		System.out.println("---Grades---");
+		Grade gr1 = new Grade();
+		System.out.println(gr1);
+		Grade gr2 = new Grade(10, stud2, course1);
+		System.out.println(gr2);
+		Grade gr3 = new Grade(7, stud2, course2);
+		System.out.println(gr3);
 	}
 
 	public static double avgGrade(Student student) {
