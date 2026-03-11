@@ -115,4 +115,37 @@ public class VeA_IS {
 			}
 		}
 	}
+	
+	
+	//CRUD - C - create, R - retrieve, U - update, D - delete
+	
+	//C - create student
+	public static void createStudent(String inputName, String inputSurname) throws Exception {
+		//TODO parbaudiet ienakosos parametrus
+		
+		for(var i : studentLists) {
+			if(i.getName().equals(inputName) && i.getSurname().equals(inputSurname)) {
+				throw new Exception("Tads students jau eksiste");
+			}
+		}
+		
+		studentLists.add(new Student(inputName, inputSurname));
+	}
+	
+	//R - retrieve by ID
+	public static Student getStudentById(long id) throws Exception {
+		if(id < 0) {
+			throw new Exception("Id nevar but negativs");
+		}
+		
+		for(var i : studentLists) {
+			if(i.getSt_ID() == id) {
+				return i;
+			}
+		}
+		
+		throw new Exception("Students ar id " + id + " neeksiste");
+		
+	}
 }
+
