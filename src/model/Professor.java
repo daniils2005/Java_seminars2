@@ -2,28 +2,24 @@ package model;
 
 import model.enums.ProfDegree;
 
-public class Professor {
+public class Professor extends Person {
 	private long p_ID;
-	private String name;
-	private String surname;
 	private ProfDegree degree;
 	private static long idCounter = 0;
 
 	// default constructor
 	public Professor() {
+		super();
 		idCounter++;
 		setP_ID(idCounter);
-		setName("-name required-");
-		setSurname("-surname required-");
 		setDegree(ProfDegree.other);
 	}
 
 	// parameterized constructor
 	public Professor(String name, String surname, ProfDegree degree) {
+		super(name, surname);
 		idCounter++;
 		setP_ID(idCounter);
-		setName(name);
-		setSurname(surname);
 		setDegree(degree);
 	}
 
@@ -39,30 +35,6 @@ public class Professor {
 		}
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		if(Utility_class.isOnlyLetters(name)) {
-			this.name = name;
-		} else {
-			this.name = "-name required-";
-		}
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		if(Utility_class.isOnlyLetters(surname)) {
-			this.surname = surname;
-		} else {
-			this.surname = "-surname required-";
-		}
-	}
-
 	public ProfDegree getDegree() {
 		return degree;
 	}
@@ -73,7 +45,7 @@ public class Professor {
 
 	@Override
 	public String toString() {
-		return "Professor [p_ID=" + p_ID + ", name=" + name + ", surname=" + surname + ", degree=" + degree + "]";
+		return "Professor [p_ID=" + p_ID + ", degree=" + degree + ", name=" + name + ", surname=" + surname + "]";
 	}
-	
+
 }
