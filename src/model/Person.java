@@ -2,8 +2,8 @@ package model;
 
 public class Person {
 	//1 mainigie
-	private String name;
-	private String surname;
+	protected String name;
+	protected String surname;
 	//2 getters
 	//3 setters
 	public String getName() {

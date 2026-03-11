@@ -1,23 +1,19 @@
 package model;
 
-public class Student {
+public class Student extends Person {
 	private long st_ID;
-	private String name;
-	private String surname;
 	private static long idCounter = 10000; 
 	
 	public Student() {
+		super(); //izsauksies automatiski Person() konstruktors
 		idCounter++;
 		setSt_ID(idCounter);
-		setName("-name required-");
-		setSurname("-surname required-");
 	}
 	
 	public Student(String name, String surname) {
+		super(name, surname);
 		idCounter++;
 		setSt_ID(idCounter);
-		setName(name);
-		setSurname(surname);
 	}
 
 	public long getSt_ID() {
@@ -32,33 +28,9 @@ public class Student {
 		}
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		if(Utility_class.isOnlyLetters(name)) {
-			this.name = name;
-		} else {
-			this.name = "-name required-";
-		}
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		if(Utility_class.isOnlyLetters(surname)) {
-			this.surname = surname;
-		} else {
-			this.surname = "-surname required-";
-		}
-	}
-
 	@Override
 	public String toString() {
 		return "Student [st_ID=" + st_ID + ", name=" + name + ", surname=" + surname + "]";
 	}
-	
+
 }
