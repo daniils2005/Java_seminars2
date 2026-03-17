@@ -13,8 +13,7 @@ import java.util.Arrays;
 
 public class VeA_IS {
 	
-	private static ArrayList<Professor> professorLists = new ArrayList<>();
-	private static ArrayList<Student> studentLists = new ArrayList<>();
+	private static ArrayList<Person> personLists = new ArrayList<>();
 	private static ArrayList<Course> courseLists = new ArrayList<>();
 	private static ArrayList<Grade> gradeLists = new ArrayList<>();
 	
@@ -22,20 +21,32 @@ public class VeA_IS {
 		Student stud1 = new Student();
 		Student stud2 = new Student("Rendijs", "Serna");
 		Student stud3 = new Student("671547", "Ser2d");
-		studentLists.add(stud1);
-		studentLists.add(stud2);
-		studentLists.add(stud3);
-		
-		System.out.println(studentLists);
+		personLists.add(stud1);
+		personLists.add(stud2);
+		personLists.add(stud3);
 		
 		Professor prof1 = new Professor();
 		Professor prof2 = new Professor("Vairis", "Caune", ProfDegree.phd);
 		Professor prof3 = new Professor("Galina", "Hilkevica", ProfDegree.phd);
-		professorLists.add(prof1);
-		professorLists.add(prof2);
-		professorLists.add(prof3);
+		personLists.add(prof1);
+		personLists.add(prof2);
+		personLists.add(prof3);
 		
-		System.out.println(professorLists);
+		System.out.println("Visas personas: " + personLists);
+		
+		System.out.println("-----STUDENTS------");
+		for(var i : personLists) {
+			if(i instanceof Student) { //parbauda, vai persona ir students
+				System.out.println(i);
+			}
+		}
+		
+		System.out.println("-----PROFESSORS-----");
+		for(var i : personLists) {
+			if(i instanceof Professor) { //parbauda, vai persona ir students
+				System.out.println(i);
+			}
+		}
 		
 		Course course1 = new Course();
 		Course course2 = new Course("Algoritmu teorija", 3, prof2);
@@ -56,12 +67,12 @@ public class VeA_IS {
 		System.out.println("----------CRUD TESTING----------");
 		try {
 			createStudent("Janis", "Berzins");
-			System.out.println(studentLists);
+			System.out.println(personLists);
 			System.out.println(getStudentById(10001));
 			System.out.println(updateById(10002, "Rendijs", "Jaukais")); //Nomainits Rendija uzvards
-			System.out.println(studentLists);
+			System.out.println(personLists);
 			deleteById(10003);
-			System.out.println(studentLists);
+			System.out.println(personLists);
 		} catch (Exception e){
 			System.out.println(e.getMessage());
 		}
@@ -136,13 +147,12 @@ public class VeA_IS {
 	public static void createStudent(String inputName, String inputSurname) throws Exception {
 		//TODO parbaudiet ienakosos parametrus
 		
-		for(var i : studentLists) {
-			if(i.getName().equals(inputName) && i.getSurname().equals(inputSurname)) {
+		for(var i : personLists) {
+			if(i instanceof Student && i.getName().equals(inputName) && i.getSurname().equals(inputSurname)) {
 				throw new Exception("Tads students jau eksiste");
 			}
 		}
-		
-		studentLists.add(new Student(inputName, inputSurname));
+		personLists.add(new Student(inputName, inputSurname));
 	}
 	
 	//R - retrieve by ID
@@ -151,9 +161,12 @@ public class VeA_IS {
 			throw new Exception("Id nevar but negativs");
 		}
 		
-		for(var i : studentLists) {
-			if(i.getSt_ID() == id) {
-				return i;
+		for(var i : personLists) {
+			if(i instanceof Student) { //parbauda, vai persona ir students
+				Student stud = (Student)i; //parveidojam atrasto personu uz Student tipa
+				if(stud.getSt_ID() == id) {
+					return stud;
+				}
 			}
 		}
 		
@@ -182,15 +195,18 @@ public class VeA_IS {
 	
 	public static void deleteById(int id) throws Exception {
 		Student studentForDeleting = getStudentById(id);
-		studentLists.remove(studentForDeleting);
+		personLists.remove(studentForDeleting);
 	}
 	
 	//izfiltret un atgriezt visus profesorus, kuru degree ir master
 	public static ArrayList<Professor> professorsWithMasterDegree(){
 		ArrayList<Professor> masters = new ArrayList<>();
-		for(var i : professorLists) {
-			if(i.getDegree() == ProfDegree.master) {
-				masters.add(i);
+		for(var i : personLists) {
+			if(i instanceof Professor) {
+				Professor prof = (Professor)i;
+				if(prof.getDegree() == ProfDegree.master) {
+					masters.add(prof);
+				}
 			}
 		}
 		return masters;
@@ -201,9 +217,12 @@ public class VeA_IS {
 			throw new Exception("Neeksistejoss grads");
 		}
 		ArrayList<Professor> result = new ArrayList<>();
-		for(var i : professorLists) {
-			if(i.getDegree().equals(inputDegree)) {
-				result.add(i);
+		for(var i : personLists) {
+			if(i instanceof Professor) {
+				Professor prof = (Professor)i;
+				if(prof.getDegree().equals(inputDegree)) {
+					result.add(prof);
+				}
 			}
 		}
 		if(result.isEmpty()) {
