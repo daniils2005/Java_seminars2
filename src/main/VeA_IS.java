@@ -184,5 +184,33 @@ public class VeA_IS {
 		Student studentForDeleting = getStudentById(id);
 		studentLists.remove(studentForDeleting);
 	}
+	
+	//izfiltret un atgriezt visus profesorus, kuru degree ir master
+	public static ArrayList<Professor> professorsWithMasterDegree(){
+		ArrayList<Professor> masters = new ArrayList<>();
+		for(var i : professorLists) {
+			if(i.getDegree() == ProfDegree.master) {
+				masters.add(i);
+			}
+		}
+		return masters;
+	}
+	
+	public static ArrayList<Professor> professorsWithMasterDegree(ProfDegree inputDegree) throws Exception {
+		if(inputDegree == null) {
+			throw new Exception("Neeksistejoss grads");
+		}
+		ArrayList<Professor> result = new ArrayList<>();
+		for(var i : professorLists) {
+			if(i.getDegree().equals(inputDegree)) {
+				result.add(i);
+			}
+		}
+		if(result.isEmpty()) {
+			throw new Exception("Sistema nav profesoru ar " + inputDegree + " gradu");
+		}
+		return result;
+	}
+	
 }
 
