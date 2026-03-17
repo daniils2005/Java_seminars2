@@ -52,6 +52,19 @@ public class VeA_IS {
 		gradeLists.add(gr3);
 		
 		System.out.println(gradeLists);
+		
+		System.out.println("----------CRUD TESTING----------");
+		try {
+			createStudent("Janis", "Berzins");
+			System.out.println(studentLists);
+			System.out.println(getStudentById(10001));
+			System.out.println(updateById(10002, "Rendijs", "Jaukais")); //Nomainits Rendija uzvards
+			System.out.println(studentLists);
+			deleteById(10003);
+			System.out.println(studentLists);
+		} catch (Exception e){
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public static double avgGrade(Student student) {
